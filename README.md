@@ -2,6 +2,7 @@ Chess Site
 ===============================
 
 ![MIT License](https://img.shields.io/github/license/that-apex/ChessSite)
+![Travis (.com)](https://img.shields.io/travis/com/that-apex/ChessSite)
 
 Live Chess website - a simple hobby project. My first attempt at using Spring's WebSockets for real-time web application.
 
