@@ -1,4 +1,4 @@
-package net.thatapex.chesssite.chess.board;
+package net.thatapex.chesssite.chess.board.coordinate;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
 package net.thatapex.chesssite.chess.move;
 
-import net.thatapex.chesssite.chess.board.ChessSquare;
+import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;

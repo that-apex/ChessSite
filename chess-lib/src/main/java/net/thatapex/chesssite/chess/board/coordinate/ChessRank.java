@@ -1,8 +1,9 @@
-package net.thatapex.chesssite.chess.board;
+package net.thatapex.chesssite.chess.board.coordinate;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Represents a rank (a horizontal line) on a chess board.

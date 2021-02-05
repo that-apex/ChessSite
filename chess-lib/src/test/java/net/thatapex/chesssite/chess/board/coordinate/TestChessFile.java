@@ -1,6 +1,7 @@
-package net.thatapex.chesssite.chess.board;
+package net.thatapex.chesssite.chess.board.coordinate;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
+import net.thatapex.chesssite.chess.board.coordinate.ChessFile;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,6 +1,6 @@
 package net.thatapex.chesssite.chess.pieces;
 
-import net.thatapex.chesssite.chess.board.ChessRank;
+import net.thatapex.chesssite.chess.board.coordinate.ChessRank;
 
 public enum ChessPieceColor {
     WHITE(1, ChessRank.fromRankNumber(1).orElseThrow(), ChessRank.fromRankNumber(2).orElseThrow()),

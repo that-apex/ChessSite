@@ -1,6 +1,6 @@
 package net.thatapex.chesssite.chess.pieces;
 
-import net.thatapex.chesssite.chess.board.ChessSquare;
+import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 
 import java.util.Collection;
 import java.util.HashSet;

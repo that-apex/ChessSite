@@ -1,7 +1,7 @@
 package net.thatapex.chesssite.chess.pieces.types;
 
 import net.thatapex.chesssite.chess.board.ChessBoard;
-import net.thatapex.chesssite.chess.board.ChessSquare;
+import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 import net.thatapex.chesssite.chess.move.PotentialMove;
 import net.thatapex.chesssite.chess.pieces.ChessPiece;
 import net.thatapex.chesssite.chess.pieces.ChessPieceColor;

@@ -1,7 +1,5 @@
 package net.thatapex.chesssite.chess.pieces;
 
-import net.thatapex.chesssite.chess.board.ChessBoard;
-import net.thatapex.chesssite.chess.board.ChessSquare;
 import net.thatapex.chesssite.chess.pieces.types.Bishop;
 import net.thatapex.chesssite.chess.pieces.types.King;
 import net.thatapex.chesssite.chess.pieces.types.Knight;

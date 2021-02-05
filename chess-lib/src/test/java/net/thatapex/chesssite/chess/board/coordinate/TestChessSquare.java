@@ -1,10 +1,11 @@
-package net.thatapex.chesssite.chess.board;
+package net.thatapex.chesssite.chess.board.coordinate;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
+import net.thatapex.chesssite.chess.board.coordinate.ChessFile;
+import net.thatapex.chesssite.chess.board.coordinate.ChessRank;
+import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;

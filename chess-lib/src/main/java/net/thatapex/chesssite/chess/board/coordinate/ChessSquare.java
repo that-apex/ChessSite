@@ -1,5 +1,6 @@
-package net.thatapex.chesssite.chess.board;
+package net.thatapex.chesssite.chess.board.coordinate;
 
+import net.thatapex.chesssite.chess.board.MutableChessBoardImpl;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,7 +11,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 /**
- * Represents a single square on a {@link ChessBoard}
+ * Represents a single square on a {@link MutableChessBoardImpl}
  */
 public final class ChessSquare {
     private final ChessFile file;

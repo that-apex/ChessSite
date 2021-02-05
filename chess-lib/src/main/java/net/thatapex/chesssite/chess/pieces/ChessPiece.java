@@ -1,7 +1,7 @@
 package net.thatapex.chesssite.chess.pieces;
 
 import net.thatapex.chesssite.chess.board.ChessBoard;
-import net.thatapex.chesssite.chess.board.ChessSquare;
+import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 import net.thatapex.chesssite.chess.move.PotentialMove;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
