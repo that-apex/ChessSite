@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -109,7 +110,7 @@ public final class ChessSquare {
      *     <li>{@code [this.getFile() + fileDelta * 3, this.getRank() + rankDelta * 3]}</li>
      *     <li>...</li>
      * </ol>
-     *
+     * <p>
      * The starting point (point equal to {@code this}) is never a part of the returned collection.
      *
      * <p>
@@ -138,6 +139,53 @@ public final class ChessSquare {
         }
 
         return squares;
+    }
+
+    /**
+     * Finds a {@link ChessPath} starting at {@code this} square and ending at targetSquare.
+     * <p>
+     * This function only looks for paths that are either diagonal, horizontal or vertical.
+     * If there is no direct path that meets these requirements, a null optional will be returned.
+     *
+     * @param targetSquare square to end the path at
+     * @return the found path, or an empty optional if no path was found
+     */
+    public Optional<ChessPath> findPathTo(final ChessSquare targetSquare) {
+        final int deltaFile = targetSquare.getFile().getIndex() - this.getFile().getIndex();
+        final int deltaRank = targetSquare.getRank().getIndex() - this.getRank().getIndex();
+
+        if (deltaFile == 0 && deltaRank == 0) {
+            return Optional.empty();
+        }
+
+        final int deltaFileNormalized;
+        final int deltaRankNormalized;
+
+        if (Math.abs(deltaFile) == Math.abs(deltaRank)) {
+            // Diagonal move
+            deltaFileNormalized = deltaFile >= 0 ? 1 : -1;
+            deltaRankNormalized = deltaRank >= 0 ? 1 : -1;
+        } else if (deltaFile == 0) {
+            // Vertical move
+            deltaFileNormalized = 0;
+            deltaRankNormalized = deltaRank >= 0 ? 1 : -1;
+        } else if (deltaRank == 0) {
+            // Horizontal move
+            deltaFileNormalized = deltaFile >= 0 ? 1 : -1;
+            deltaRankNormalized = 0;
+        } else {
+            // Invalid move
+            return Optional.empty();
+        }
+
+        final int               middlePointsCount = Math.max(Math.abs(deltaFile) - 1, Math.abs(deltaRank) - 1);
+        final List<ChessSquare> middlePoints      = new ArrayList<>(middlePointsCount);
+
+        for (int i = 1; i <= middlePointsCount; i++) {
+            middlePoints.add(this.getShifted(deltaFileNormalized * i, deltaRankNormalized * i).orElseThrow());
+        }
+
+        return Optional.of(new ChessPath(this, middlePoints, targetSquare));
     }
 
     @Override

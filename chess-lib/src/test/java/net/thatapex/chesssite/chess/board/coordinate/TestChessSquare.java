@@ -1,15 +1,15 @@
 package net.thatapex.chesssite.chess.board.coordinate;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
-import net.thatapex.chesssite.chess.board.coordinate.ChessFile;
-import net.thatapex.chesssite.chess.board.coordinate.ChessRank;
-import net.thatapex.chesssite.chess.board.coordinate.ChessSquare;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
-import static com.spotify.hamcrest.optional.OptionalMatchers.*;
+import static com.spotify.hamcrest.optional.OptionalMatchers.emptyOptional;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class TestChessSquare {
 
@@ -112,6 +112,57 @@ public class TestChessSquare {
                 newSquareOrThrow(2, 6)
         ));
     }
+
+
+    @Test
+    public void testFindPathTo() {
+        final ChessSquare originPoint = newSquareOrThrow(4, 4);
+
+        assertThat(originPoint.findPathTo(originPoint), is(emptyOptional()));
+
+        assertThat(originPoint.findPathTo(newSquareOrThrow(5, 6)), is(emptyOptional()));
+        assertThat(originPoint.findPathTo(newSquareOrThrow(7, 6)), is(emptyOptional()));
+        assertThat(originPoint.findPathTo(newSquareOrThrow(2, 0)), is(emptyOptional()));
+        assertThat(originPoint.findPathTo(newSquareOrThrow(3, 2)), is(emptyOptional()));
+        assertThat(originPoint.findPathTo(newSquareOrThrow(7, 3)), is(emptyOptional()));
+
+        final ChessPath diagonalPath1   = originPoint.findPathTo(newSquareOrThrow(5, 5)).orElseThrow();
+        final ChessPath diagonalPath2   = originPoint.findPathTo(newSquareOrThrow(2, 2)).orElseThrow();
+        final ChessPath diagonalPath3   = originPoint.findPathTo(newSquareOrThrow(1, 7)).orElseThrow();
+        final ChessPath diagonalPath4   = originPoint.findPathTo(newSquareOrThrow(7, 1)).orElseThrow();
+        final ChessPath verticalPath1   = originPoint.findPathTo(newSquareOrThrow(4, 1)).orElseThrow();
+        final ChessPath verticalPath2   = originPoint.findPathTo(newSquareOrThrow(4, 5)).orElseThrow();
+        final ChessPath horizontalPath1 = originPoint.findPathTo(newSquareOrThrow(7, 4)).orElseThrow();
+        final ChessPath horizontalPath2 = originPoint.findPathTo(newSquareOrThrow(3, 4)).orElseThrow();
+
+        assertThat(diagonalPath1.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(diagonalPath2.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(diagonalPath3.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(diagonalPath4.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(verticalPath1.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(verticalPath2.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(horizontalPath1.getStartingPoint(), is(equalTo(originPoint)));
+        assertThat(horizontalPath2.getStartingPoint(), is(equalTo(originPoint)));
+
+        assertThat(diagonalPath1.getMiddlePoints(), is(empty()));
+        assertThat(diagonalPath2.getMiddlePoints(), contains(newSquareOrThrow(3, 3)));
+        assertThat(diagonalPath3.getMiddlePoints(), contains(newSquareOrThrow(3, 5), newSquareOrThrow(2, 6)));
+        assertThat(diagonalPath4.getMiddlePoints(), contains(newSquareOrThrow(5, 3), newSquareOrThrow(6, 2)));
+        assertThat(verticalPath1.getMiddlePoints(), contains(newSquareOrThrow(4, 3), newSquareOrThrow(4, 2)));
+        assertThat(verticalPath2.getMiddlePoints(), is(empty()));
+        assertThat(horizontalPath1.getMiddlePoints(), contains(newSquareOrThrow(5, 4), newSquareOrThrow(6, 4)));
+        assertThat(horizontalPath2.getMiddlePoints(), is(empty()));
+
+        assertThat(diagonalPath1.getEndingPoint(), is(equalTo(newSquareOrThrow(5, 5))));
+        assertThat(diagonalPath2.getEndingPoint(), is(equalTo(newSquareOrThrow(2, 2))));
+        assertThat(diagonalPath3.getEndingPoint(), is(equalTo(newSquareOrThrow(1, 7))));
+        assertThat(diagonalPath4.getEndingPoint(), is(equalTo(newSquareOrThrow(7, 1))));
+        assertThat(verticalPath1.getEndingPoint(), is(equalTo(newSquareOrThrow(4, 1))));
+        assertThat(verticalPath2.getEndingPoint(), is(equalTo(newSquareOrThrow(4, 5))));
+        assertThat(horizontalPath1.getEndingPoint(), is(equalTo(newSquareOrThrow(7, 4))));
+        assertThat(horizontalPath2.getEndingPoint(), is(equalTo(newSquareOrThrow(3, 4))));
+    }
+
 
     @Test
     public void testGetShifted() {
