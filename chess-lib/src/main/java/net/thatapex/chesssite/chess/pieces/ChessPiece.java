@@ -83,8 +83,9 @@ public abstract class ChessPiece<T extends ChessPiece<T>> {
      * @param boardState the board state
      * @param squareFrom the square that this piece is located at
      * @param move       move to be checked
+     * @return whether or not the move is legal
      */
-    public abstract void isMoveLegal(ChessBoard boardState, ChessSquare squareFrom, PotentialMove move);
+    public abstract boolean isMoveLegal(ChessBoard boardState, ChessSquare squareFrom, PotentialMove move);
 
     @Override
     public boolean equals(final Object o) {

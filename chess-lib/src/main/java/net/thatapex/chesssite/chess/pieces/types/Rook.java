@@ -37,7 +37,7 @@ public class Rook extends ChessPiece<Rook> {
     }
 
     @Override
-    public void isMoveLegal(final ChessBoard boardState, final ChessSquare squareFrom, final PotentialMove move) {
+    public boolean isMoveLegal(final ChessBoard boardState, final ChessSquare squareFrom, final PotentialMove move) {
         throw new UnsupportedOperationException("not implemented yet");
     }
 }
