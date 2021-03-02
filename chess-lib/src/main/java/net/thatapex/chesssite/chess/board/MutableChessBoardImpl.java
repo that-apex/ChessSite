@@ -96,7 +96,13 @@ public class MutableChessBoardImpl implements MutableChessBoard {
 
     @Override
     public void setPiece(final ChessSquare square, final ChessPiece<?> piece) {
-        this.pieces.removeIf(testedPiece -> testedPiece == piece);
+        // do not duplicate pieces
+        for (int i = 0; i < this.pieces.size(); i++) {
+            if (this.pieces.get(i) == piece) {
+                this.pieces.set(i, null);
+            }
+        }
+
         this.pieces.set(this.getIndex(square), piece);
     }
 
