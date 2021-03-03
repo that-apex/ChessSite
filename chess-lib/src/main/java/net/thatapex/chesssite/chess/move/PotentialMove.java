@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Optional;
+
 /**
  * Represents a potential move that can be made on a chess board.
  */
@@ -21,8 +23,8 @@ public class PotentialMove {
         return this.targetSquare;
     }
 
-    public Promotion getPromotion() {
-        return this.promotion;
+    public Optional<Promotion> getPromotion() {
+        return Optional.ofNullable(this.promotion);
     }
 
     @Override
