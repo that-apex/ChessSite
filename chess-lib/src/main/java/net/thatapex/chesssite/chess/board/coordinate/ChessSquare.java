@@ -158,21 +158,25 @@ public final class ChessSquare {
             return Optional.empty();
         }
 
-        final int deltaFileNormalized;
-        final int deltaRankNormalized;
+        final int                deltaFileNormalized;
+        final int                deltaRankNormalized;
+        final ChessPath.PathType type;
 
         if (Math.abs(deltaFile) == Math.abs(deltaRank)) {
             // Diagonal move
             deltaFileNormalized = deltaFile >= 0 ? 1 : -1;
             deltaRankNormalized = deltaRank >= 0 ? 1 : -1;
+            type = ChessPath.PathType.DIAGONAL;
         } else if (deltaFile == 0) {
             // Vertical move
             deltaFileNormalized = 0;
             deltaRankNormalized = deltaRank >= 0 ? 1 : -1;
+            type = ChessPath.PathType.VERTICAL;
         } else if (deltaRank == 0) {
             // Horizontal move
             deltaFileNormalized = deltaFile >= 0 ? 1 : -1;
             deltaRankNormalized = 0;
+            type = ChessPath.PathType.HORIZONTAL;
         } else {
             // Invalid move
             return Optional.empty();
@@ -185,7 +189,7 @@ public final class ChessSquare {
             middlePoints.add(this.getShifted(deltaFileNormalized * i, deltaRankNormalized * i).orElseThrow());
         }
 
-        return Optional.of(new ChessPath(this, middlePoints, targetSquare));
+        return Optional.of(new ChessPath(this, middlePoints, targetSquare, type));
     }
 
     @Override

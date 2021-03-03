@@ -161,8 +161,16 @@ public class TestChessSquare {
         assertThat(verticalPath2.getEndingPoint(), is(equalTo(newSquareOrThrow(4, 5))));
         assertThat(horizontalPath1.getEndingPoint(), is(equalTo(newSquareOrThrow(7, 4))));
         assertThat(horizontalPath2.getEndingPoint(), is(equalTo(newSquareOrThrow(3, 4))));
-    }
 
+        assertThat(diagonalPath1.getPathType(), is(equalTo(ChessPath.PathType.DIAGONAL)));
+        assertThat(diagonalPath2.getPathType(), is(equalTo(ChessPath.PathType.DIAGONAL)));
+        assertThat(diagonalPath3.getPathType(), is(equalTo(ChessPath.PathType.DIAGONAL)));
+        assertThat(diagonalPath4.getPathType(), is(equalTo(ChessPath.PathType.DIAGONAL)));
+        assertThat(verticalPath1.getPathType(), is(equalTo(ChessPath.PathType.VERTICAL)));
+        assertThat(verticalPath2.getPathType(), is(equalTo(ChessPath.PathType.VERTICAL)));
+        assertThat(horizontalPath1.getPathType(), is(equalTo(ChessPath.PathType.HORIZONTAL)));
+        assertThat(horizontalPath2.getPathType(), is(equalTo(ChessPath.PathType.HORIZONTAL)));
+    }
 
     @Test
     public void testGetShifted() {
